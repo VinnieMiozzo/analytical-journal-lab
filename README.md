@@ -1,8 +1,10 @@
 # Analytical Journal Lab
 
-This repository contains the working materials behind my analytical essays, study documents, and structured research notes.
+This repository contains the working materials behind my writings, study documents, and structured research notes.
 
-It is not meant to be a polished portfolio repository in the traditional sense. Instead, it is the support layer behind my written work: the place where ideas are developed, arguments are tested, examples are built, figures are generated, and references are organized before being turned into final documents, blog posts, or publishable analytical pieces.
+It is not meant to be a polished portfolio repository in the traditional sense. Instead, it is the support layer behind my written work: 
+the place where ideas are developed, arguments are tested, examples are built, figures are generated, and references are organized before 
+being turned into final documents, blog posts, or publishable analytical pieces.
 
 ## Purpose
 
@@ -22,7 +24,9 @@ This repository helps me preserve not only final outputs, but also the reasoning
 
 This is a curated working repository.
 
-That means the contents are intentionally organized and useful for future reference, but they are not always final or fully polished. Some materials are intermediate by design: developed enough to be worth keeping, clean enough to be revisited, and structured enough to support future work.
+That means the contents are intentionally organized and useful for future reference, but they are not always final or fully polished. 
+Some materials are intermediate by design: developed enough to be worth keeping, clean enough to be revisited, and structured enough to 
+support future work.
 
 ## What this repository is not
 
@@ -32,7 +36,8 @@ This is not:
 - a replacement for my main portfolio repository
 - a pure academic note archive
 
-My portfolio repository is where I showcase finalized, recruiter-facing projects. This repository is where I keep the underlying thinking, writing assets, and supporting analytical work.
+My portfolio repository is where I showcase finalized, recruiter-facing projects. This repository is where I keep the underlying thinking, 
+writing assets, and supporting analytical work.
 
 ## Repository structure
 
