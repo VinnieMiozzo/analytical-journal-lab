@@ -23,18 +23,20 @@ I created this entirely as part of my independent studies to deepen the concepts
 
 ### Repository Structure
 
+```text
 expected-value-vs-mode-simulation/
 ├── README.md
 ├── requirements.txt
 ├── notebooks/
 │   └── ev_simulation.ipynb          # Full walkthrough (recommended starting point)
 ├── src/
-│   ├── init.py
+│   ├── __init__.py
 │   ├── simulation.py                # Reusable Monte Carlo engine
 │   └── visualization.py             # Plotting functions
 ├── results/                         # Generated charts (ev_histogram.png, ev_convergence.png)
 ├── streamlit_app.py                 # Interactive dashboard (optional)
 └── .gitignore
+```
 
 
 ### Results Summary (from 10,000 trials)
