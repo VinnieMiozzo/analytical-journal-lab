@@ -50,11 +50,15 @@ expected-value-vs-mode-simulation/
 
 **Visuals** (generated directly by the code):
 
-![Outcome Distributions](results/ev_histogram.png)  
-*Outcome distributions — peaks show the mode; dashed lines show the true expected value.*
+![Outcome Distributions](results/ev_decision_map.png)  
+*Decision maps for both example pairs. The diamond marks the mode, bubble size reflects
+probability, and the dashed line marks expected value. The charts make clear that 
+judging a choice by its most likely outcome alone can lead to the wrong decision.*
 
-![EV Convergence](results/ev_convergence.png)  
-*Cumulative average return over trials — higher-EV strategies converge reliably (Law of Large Numbers).*
+![EV Convergence](results/ev_convergence_improved.png)  
+*Simulation paths of cumulative average return across trials. Over time, each path 
+converges toward its theoretical expected value, showing that the higher-EV choice 
+dominates in the long run.*
 
 ### How It Ties to My Studies
 

@@ -14,4 +14,4 @@ for name, strategy in STRATEGIES.items():
 plot_outcome_distributions(results)
 plot_ev_convergence(results)
 
-print("\n✅ All done! Results folder now contains the two PNGs for your Overleaf PDF.")
+print("\n✅ All done! Results folder now contains the two PNGs.")
