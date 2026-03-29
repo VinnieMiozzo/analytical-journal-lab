@@ -1,0 +1,87 @@
+% =============================================
+% vmiozzo.sty
+% Custom LaTeX style for Vinicius Miozzo's essays
+% Version: March 2026
+% =============================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{vmiozzo}[2026/03/27 Vinicius Miozzo Essay Style]
+
+% Core packages
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\graphicspath{{results/}{./}}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{fancyhdr}
+
+% Logo in the top-right of every page
+\pagestyle{fancyi}
+\fancyhf{}
+\cfoot{\thepage}
+
+% Modern section styling with brand color
+\titleformat{\section}{\Large\bfseries\color{brandblue}}{\thesection.}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection.}{1em}{}
+
+% Brand colors (change hex if you want to match your logo better)
+\definecolor{brandblue}{HTML}{1E40AF}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Python listings style (clean and consistent)
+\lstdefinestyle{mypython}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    breakatwhitespace=false,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    tabsize=4
+}
+
+% === Reusable macros (this is the magic for easy writing) ===
+
+% Easy image insertion: \myfig{filename.png}{Caption text}
+\newcommand{\myfig}[3][0.95\textwidth]{%
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=#1]{#2}
+    \caption{#3}
+    \label{fig:#2}
+  \end{figure}
+}
+
+% Easy table: \mytable{Caption}{tabular environment}
+\newcommand{\mytable}[2]{%
+  \begin{table}[htbp]
+    \centering
+    \caption{#1}
+    #2
+  \end{table}
+}
+
+% Hyperref settings
+\hypersetup{
+  colorlinks=true,
+  linkcolor=brandblue,
+  urlcolor=brandblue,
+  citecolor=brandblue
+}
+
+\endinput
