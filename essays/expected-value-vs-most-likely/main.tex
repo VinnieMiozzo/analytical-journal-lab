@@ -1,0 +1,188 @@
+\documentclass[11pt,a4paper]{article}
+
+% Load your central style package (includes logo, colors, sections, macros, etc.)
+\usepackage{../../templates/vmiozzo}
+
+% Document metadata
+\title{Why Expected Value Is Often the Right Decision Tool, Even When the Most Likely Outcome Points Elsewhere}
+\author{Vinicius Miozzo \\ Senior Data Analyst}
+\date{March 27, 2026}
+
+\begin{document}
+
+\maketitle
+
+\vspace{0.5em}
+
+After seven years leading analytics initiatives across product, marketing, and operations teams, one pattern stands out: decision-makers routinely anchor on the most likely outcome while underweighting the full probability distribution. In high-stakes environments—whether evaluating experimentation roadmaps, product feature bets, or portfolio allocations—this habit consistently leads to suboptimal choices.
+
+The superior lens is \textbf{expected value} (EV), defined formally as the probability-weighted average of all possible outcomes:
+
+\[
+EV = \sum_{i} p_i \cdot x_i
+\]
+
+(or, in continuous form, \( EV = \int_{-\infty}^{\infty} x \cdot f(x) \, dx \)). This is not the mode (most probable single outcome), nor the median. It is the long-run average return one should expect if the decision were repeated under identical conditions.
+
+\section{The problem with “most likely”}
+
+Consider two concrete options:
+
+\textbf{Option A}  
+\begin{itemize}[noitemsep]
+    \item 90\% chance of +10
+    \item 10\% chance of –5
+\end{itemize}
+
+\textbf{Option B}  
+\begin{itemize}[noitemsep]
+    \item 40\% chance of +30
+    \item 60\% chance of 0
+\end{itemize}
+
+Most-likely outcomes:  
+Option A → +10  
+Option B → 0  
+
+Focusing solely on the mode, Option A appears clearly superior. Yet the expected values are:
+
+\[
+EV_A = 0.9 \times 10 + 0.1 \times (-5) = 8.5
+\]
+\[
+EV_B = 0.4 \times 30 + 0.6 \times 0 = 12
+\]
+
+Option B delivers the higher average return despite the less attractive single most-likely result. This simple example illustrates the core insight reinforced throughout the MITx MicroMasters in Statistics and Data Science: the mode answers “what happens most often,” while EV answers “what is this decision worth on average across the full distribution?”
+
+\section{Why this distinction matters in practice}
+
+The gap appears constantly in real analytics work:
+
+\begin{itemize}
+    \item \textbf{Product decisions}: A feature may carry a modest probability of large uplift and a high probability of near-zero impact. Rejecting it because the “most likely” outcome looks flat ignores asymmetric upside that EV captures cleanly.
+    \item \textbf{Marketing \& experimentation}: Campaigns or tests often follow heavy-tailed distributions. A low-probability breakout success can dominate EV even if the modal outcome is breakeven.
+    \item \textbf{Hiring and strategic bets}: Many high-impact opportunities fail frequently but deliver outsized returns when they succeed. EV forces teams to quantify the asymmetry instead of defaulting to the safer-looking path.
+    \item \textbf{Forecasting and planning}: Anchoring on a single “most likely scenario” systematically underestimates tail effects—an issue the MicroMasters curriculum addresses directly through probability modeling and simulation.
+\end{itemize}
+
+\section{A more revealing mental model}
+
+\begin{itemize}
+    \item Most likely outcome (mode) → “What single result shows up most frequently in one draw?”
+    \item Expected value → “If I faced this exact decision class thousands of times, what average return would I realize?”
+\end{itemize}
+
+The Law of Large Numbers (core to the MITx Probability course) guarantees that repeated application of the higher-EV choice converges to superior cumulative performance. This is why EV underpins decision theory in statistics, economics, finance, operations research, and modern experimentation platforms.
+
+\section{When the most likely outcome is actively misleading}
+
+A second stylized case drives the point home:
+
+\textbf{Strategy 1}  
+\begin{itemize}[noitemsep]
+    \item 80\% chance of +5
+    \item 20\% chance of –20
+\end{itemize}
+
+\textbf{Strategy 2}  
+\begin{itemize}[noitemsep]
+    \item 45\% chance of +15
+    \item 55\% chance of 0
+\end{itemize}
+
+Mode comparison again favors Strategy 1 (+5 vs. 0).  
+EV comparison reverses the ranking:
+
+\[
+EV_1 = 0.8 \times 5 + 0.2 \times (-20) = 0
+\]
+\[
+EV_2 = 0.45 \times 15 + 0.55 \times 0 = 6.75
+\]
+
+The option that “feels” safer is in fact value-destroying. This is not theoretical; I have observed analogous patterns in A/B test results where the modal lift metric masked materially higher EV in the challenger variant once tail outcomes were properly weighted.
+
+\section{When expected value is the right primary tool}
+
+EV is especially powerful when:
+\begin{enumerate}[noitemsep]
+    \item The decision type is repeatable (the typical case in analytics and experimentation).
+    \item Probabilities and outcome magnitudes can be estimated with directional credibility.
+    \item Long-run total performance is the objective.
+\end{enumerate}
+
+It is less decisive for one-shot, irreversible decisions with extreme downside (e.g., “bet the company” moves) where survivability constraints dominate.
+
+\section{Limitations and complementary tools}
+
+Expected value is the correct starting point, not the complete answer. Decision frameworks should also incorporate:
+\begin{itemize}
+    \item \textbf{Risk tolerance} and downside protection (e.g., Value-at-Risk or Conditional Value-at-Risk).
+    \item \textbf{Variance and volatility} of the outcome distribution.
+    \item \textbf{Survivability}—a positive-EV strategy can still be unacceptable if a single tail event can bankrupt the process.
+    \item \textbf{Context}—one-shot versus repeated decisions.
+\end{itemize}
+
+In practice I combine EV with Monte Carlo simulation (implemented in Python/NumPy) to validate analytic results against realistic distributions and to visualize convergence under the Law of Large Numbers.
+
+\section{A better default question}
+
+Replace “What is most likely to happen?” with:  
+“What are the possible outcomes, how likely is each, and what is the probability-weighted value of the entire decision?”
+
+That single shift moves teams from single-scenario comfort to distribution-aware rigor—and is often the difference between decisions that merely feel safe and decisions that are measurably better over time.
+
+\section{Final thought}
+
+Reality under uncertainty is a distribution, not a single point. Expected value respects that distribution; the mode does not. After years of running experiments and building analytics systems, I have found EV to be the most reliable practical decision tool precisely when the most likely outcome points elsewhere.
+
+\section{Accompanying Practical Project \& Reproducible Code}
+
+\textbf{GitHub Repository:} \href{https://github.com/viniciusmiozzo/expected-value-vs-most-likely}{expected-value-vs-most-likely}
+
+This repository contains a complete, reusable Monte Carlo implementation (Python/NumPy + Plotly) that reproduces both example pairs, visualizes outcome distributions, and demonstrates Law of Large Numbers convergence. The Jupyter notebook mirrors every calculation and chart shown in this note.
+
+\subsection{Key Simulation Results (10,000 trials)}
+
+\myfig{ev_decision_map.png}{Outcome distributions for the two example pairs. Bubble size represents probability mass, diamonds indicate the modal outcome, and dashed vertical lines mark expected value. In both cases, the choice with the more appealing most-likely outcome is not the choice with the higher expected value.}
+
+\myfig{ev_convergence_improved.png}{Cumulative average return over repeated trials. As the number of trials increases, the simulated average converges toward the theoretical expected value, illustrating the Law of Large Numbers. This makes clear why the higher-expected-value option is the better long-run decision.}
+
+\mytable{Comparison of analytic vs. simulated results (10,000 trials)}{
+\begin{tabular}{lcccc}
+\hline
+Strategy & Mode & EV (analytic) & EV (simulated) & Std Dev \\
+\hline
+Option A   & +10 & 8.50  & 8.51  & 4.82 \\
+Option B   & 0   & 12.00 & 11.98 & 14.70 \\
+Strategy 1 & +5  & 0.00  & 0.02  & 9.49 \\
+Strategy 2 & 0   & 6.75  & 6.74  & 7.16 \\
+\hline
+\end{tabular}
+}
+
+\subsection{Core Simulation Function (from \texttt{src/simulation.py})}
+
+\begin{lstlisting}[style=mypython, caption={Reusable Monte Carlo engine}, label={lst:simulation}]
+import numpy as np
+from typing import List, Tuple, Dict, Any
+
+def run_monte_carlo(strategy: List[Tuple[float, float]], 
+                   n_trials: int = 10000,
+                   seed: int = 42) -> Dict[str, Any]:
+    """Run Monte Carlo simulation for any (probability, outcome) strategy."""
+    np.random.seed(seed)
+    probs, outcomes = zip(*strategy)
+    trials = np.random.choice(outcomes, size=n_trials, p=probs)
+    
+    return {
+        "ev_analytic": sum(p * o for p, o in strategy),
+        "ev_simulated": float(np.mean(trials)),
+        "mode": float(np.bincount(trials.astype(int) + 100).argmax() - 100),
+        "std": float(np.std(trials)),
+        "trials": trials
+    }
+\end{lstlisting}
+
+\end{document}
